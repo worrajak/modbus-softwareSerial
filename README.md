@@ -79,4 +79,17 @@ float getRTU(uint16_t m_startAddress){
 
 ![ScreenShot](https://github.com/worrajak/modbus-softwareSerial/blob/master/SDM120inputRegister.jpg?raw=true)
 
-
+```
+    V = getRTU(0x0000); 
+    delay(100);
+    A = getRTU(0x0006);
+    delay(100); 
+    W = getRTU(0x000C);
+    delay(100);      
+    Wh = getRTU(0x0156);
+    delay(100); 
+    PF = getRTU(0x001E);
+    delay(100);
+    F = getRTU(0x0046);
+    delay(100);   
+```
