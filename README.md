@@ -53,6 +53,30 @@ node.begin(1, mySerial);
     Serial.println(x,2);
   }
 ```
+4. New Code IEEE754 convert 
+```
+float reform_uint16_2_float32(uint16_t u1, uint16_t u2)
+{  
+  uint32_t num = ((uint32_t)u1 & 0xFFFF) << 16 | ((uint32_t)u2 & 0xFFFF);
+    float numf;
+    memcpy(&numf, &num, 4);
+    return numf;
+}
+
+float getRTU(uint16_t m_startAddress){
+  uint8_t m_length =2;
+  uint16_t result;
+  float x;
+
+  node.preTransmission(preTransmission);
+  node.postTransmission(postTransmission);
+  result = node.readInputRegisters(m_startAddress, m_length);
+  if (result == node.ku8MBSuccess) {
+     return reform_uint16_2_float32(node.getResponseBuffer(0),node.getResponseBuffer(1));
+  }
+}  
+```
+
 ![ScreenShot](https://github.com/worrajak/modbus-softwareSerial/blob/master/SDM120inputRegister.jpg?raw=true)
 
 
